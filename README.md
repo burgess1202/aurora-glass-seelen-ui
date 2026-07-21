@@ -1,10 +1,24 @@
 # Aurora Glass for Seelen UI
 
+<p align="center">
+  <img src="assets/aurora-glass-icon-1x1.png" alt="Aurora Glass concept icon" width="220">
+</p>
+
 ![Aurora Glass banner](assets/aurora-glass-banner-21x9.png)
 
 Aurora Glass is an unofficial community theme for [Seelen UI](https://github.com/eythaann/seelen-ui). It gives the dock, toolbar, application launcher, and system popups a consistent translucent glass surface with fine silver borders and restrained motion.
 
 Aurora Glass 是一款非官方 Seelen UI 社群主題，讓 Dock、工具欄、應用程式頁與系統彈出頁面使用一致的半透明玻璃、銀色細邊與動態效果。
+
+## Screenshots
+
+### Application launcher
+
+![Aurora Glass application launcher](assets/screenshots/application-launcher.png)
+
+### Calendar popup and dock
+
+![Aurora Glass calendar popup and dock](assets/screenshots/calendar-popup.png)
 
 ## Features
 
