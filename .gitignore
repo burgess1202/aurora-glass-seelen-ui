@@ -1,0 +1,3 @@
+bundle *.yml
+.DS_Store
+Thumbs.db

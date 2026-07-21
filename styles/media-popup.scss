@@ -1,0 +1,40 @@
+.media-device {
+  padding: 5px 6px !important;
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease !important;
+
+  &:hover,
+  &:focus-within {
+    background: var(--slu-dock-glass-item-hover) !important;
+    border-color: rgb(255 255 255 / 0.24) !important;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16) !important;
+  }
+}
+
+.media-session-container {
+  border: 1px solid rgb(255 255 255 / 0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 2px 8px rgb(0 0 0 / 0.12) !important;
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    filter 140ms ease !important;
+
+  &:hover,
+  &:focus-within {
+    border-color: rgb(255 255 255 / 0.24) !important;
+    filter: brightness(1.04);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.16),
+      0 4px 16px rgb(0 0 0 / 0.18) !important;
+  }
+}
+
+.media-slider-row button {
+  flex-shrink: 0;
+}

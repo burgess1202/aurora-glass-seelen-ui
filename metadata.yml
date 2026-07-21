@@ -1,0 +1,94 @@
+id: "@aurora/glass"
+metadata:
+  displayName: !extend i18n/display_name.yml
+  description: !extend i18n/description.yml
+  tags:
+    - glass
+    - dock
+    - toolbar
+    - launcher
+    - animation
+  appTargetVersion: [2, 8, 0]
+
+settings:
+  - group:
+      header:
+        en: Glass surface
+        zh-TW: 玻璃表面
+      items:
+        - syntax: <number>
+          name: --aurora-glass-blur
+          label:
+            en: Blur strength
+            zh-TW: 模糊強度
+          initialValue: 10
+          min: 0
+          max: 24
+          step: 1
+        - syntax: <number>
+          name: --aurora-panel-radius
+          label:
+            en: Panel corner radius
+            zh-TW: 面板圓角
+          initialValue: 22
+          min: 12
+          max: 32
+          step: 1
+        - syntax: <color>
+          name: --aurora-panel-start
+          label:
+            en: Panel dark tint
+            zh-TW: 面板深色色調
+          initialValue: "#0a0a0a80"
+        - syntax: <color>
+          name: --aurora-panel-end
+          label:
+            en: Panel cool tint
+            zh-TW: 面板冷色色調
+          initialValue: "#3c506466"
+  - group:
+      header:
+        en: Motion
+        zh-TW: 動態效果
+      items:
+        - syntax: <number>
+          name: --aurora-wave-duration
+          label:
+            en: Dock wave transition
+            zh-TW: Dock 波浪過渡時間
+          initialValue: 100
+          min: 60
+          max: 300
+          step: 10
+        - syntax: <number>
+          name: --aurora-wave-scale
+          label:
+            en: Dock wave scale
+            zh-TW: Dock 波浪放大倍率
+          initialValue: 1.35
+          min: 1
+          max: 1.6
+          step: 0.05
+        - syntax: <number>
+          name: --aurora-border-cycle
+          label:
+            en: Silver border cycle
+            zh-TW: 銀色邊框環繞週期
+          initialValue: 10
+          min: 4
+          max: 30
+          step: 1
+
+styles:
+  "@seelen/fancy-toolbar": !include styles/fancy-toolbar.scss
+  "@seelen/weg": !include styles/weg.scss
+  "@seelen/apps-menu": !include styles/apps-menu.scss
+  "@seelen/system-tray": !include styles/tray-menu.scss
+  "@seelen/user-menu": !include styles/user-menu.scss
+  "@seelen/notifications": !include styles/notifications.scss
+  "@seelen/network-popup": !include styles/network-popup.scss
+  "@seelen/calendar-popup": !include styles/calendar-popup.scss
+  "@seelen/bluetooth-popup": !include styles/bluetooth-popup.scss
+  "@seelen/media-popup": !include styles/media-popup.scss
+
+sharedStyles: !include shared/index.scss
