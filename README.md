@@ -26,6 +26,7 @@ Aurora Glass 是一款非官方 Seelen UI 社群主題，讓 Dock、工具欄、
 - Compact toolbar with animated silver edge lighting
 - Translucent application launcher with rounded corners
 - Matching system tray, user, notification, network, calendar, Bluetooth, and media panels
+- Aurora Glass power menu with responsive controls and restrained hover states
 - Configurable blur, panel radius, tint, dock-wave timing, scale, and border cycle
 - No dependency on another community theme
 
@@ -75,3 +76,8 @@ metadata.yml  Seelen UI theme manifest
 Aurora Glass is released under the [GNU Affero General Public License v3.0](LICENSE). See [NOTICE.md](NOTICE.md) for the modification and upstream notices, and [CREDITS.md](CREDITS.md) for visual references.
 
 Seelen UI is an upstream third-party project. This repository is not affiliated with, endorsed by, or an official release of Seelen Inc. No Seelen UI executable or installer is distributed here.
+
+## Support and feedback
+
+- [Report a bug or request a feature](https://github.com/burgess1202/aurora-glass-seelen-ui/issues)
+- [Browse the source code](https://github.com/burgess1202/aurora-glass-seelen-ui)
