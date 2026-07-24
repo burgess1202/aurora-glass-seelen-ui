@@ -2,8 +2,12 @@ en: >-
   A self-contained glass desktop theme with a compact silver-edged toolbar,
   translucent launcher and popups, and an independently implemented 100 ms
   dock wave. Inspired by Apple Dock, Immersive Toolbar, OnyxToolbar and Wave
-  Animation for Taskbar; no third-party source code is included.
+  Animation for Taskbar; no third-party source code is included. Source code,
+  documentation and issue tracker:
+  https://github.com/burgess1202/aurora-glass-seelen-ui
 zh-TW: >-
   一套可獨立安裝的玻璃桌面主題，包含銀色細邊工具欄、半透明應用程式頁與
   彈出頁面，以及獨立實作的 100ms Dock 波浪。視覺設計參考 Apple Dock、
   Immersive Toolbar、OnyxToolbar 與 Wave Animation for Taskbar，未包含第三方原始碼。
+  原始碼、使用說明與問題回報：
+  https://github.com/burgess1202/aurora-glass-seelen-ui

@@ -9,6 +9,10 @@ metadata:
     - launcher
     - animation
   appTargetVersion: [2, 8, 0]
+  extras:
+    homepage: "https://github.com/burgess1202/aurora-glass-seelen-ui"
+    repository: "https://github.com/burgess1202/aurora-glass-seelen-ui"
+    issues: "https://github.com/burgess1202/aurora-glass-seelen-ui/issues"
 
 settings:
   - group:
@@ -90,5 +94,6 @@ styles:
   "@seelen/calendar-popup": !include styles/calendar-popup.scss
   "@seelen/bluetooth-popup": !include styles/bluetooth-popup.scss
   "@seelen/media-popup": !include styles/media-popup.scss
+  "@seelen/power-menu": !include styles/power-menu.scss
 
 sharedStyles: !include shared/index.scss
