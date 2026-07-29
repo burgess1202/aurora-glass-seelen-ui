@@ -23,9 +23,11 @@ Aurora Glass 是一款非官方 Seelen UI 社群主題，讓 Dock、工具欄、
 ## Features
 
 - Dock-style glass surfaces and bright hover states
+- System-accent vitreous glass for active controls and selected items
 - Compact toolbar with animated silver edge lighting
 - Translucent application launcher with rounded corners
-- Matching system tray, user, notification, network, calendar, Bluetooth, and media panels
+- Matching system tray, user, notification, network, calendar, Bluetooth, media, quick-settings, and keyboard panels
+- Aurora-styled context menus, tooltips, volume/brightness flyouts, and workspace viewer
 - Aurora Glass power menu with responsive controls and restrained hover states
 - Configurable blur, panel radius, tint, dock-wave timing, scale, and border cycle
 - No dependency on another community theme
@@ -34,6 +36,7 @@ Aurora Glass 是一款非官方 Seelen UI 社群主題，讓 Dock、工具欄、
 
 - Seelen UI 2.8.0 or newer
 - Windows 10 or Windows 11
+- Aurora styling for 17 shell and popup widgets in Seelen UI 2.8
 
 The visual theme can be installed independently. Some application-launcher lifecycle and performance improvements shown in development builds belong to the Seelen UI application itself and are not included in this theme repository.
 

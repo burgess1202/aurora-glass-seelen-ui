@@ -1,3 +1,38 @@
+.ft-bar,
+body {
+  // Use body as a style-query container so the optional layout remains a
+  // theme-only feature and never needs a Seelen binary patch.
+  container-name: aurora-toolbar-layout;
+}
+
+@font-face {
+  font-family: "Aurora Noto Sans TC Compact";
+  src: local("Noto Sans TC");
+  size-adjust: 92%;
+}
+
+#root,
+.ft-bar,
+.ft-bar-item,
+.ft-bar-item-content,
+.ft-bar-item-content > span {
+  font-family:
+    "JetBrainsMono Nerd Font",
+    "Cascadia Code",
+    "Symbols Nerd Font",
+    "Aurora Noto Sans TC Compact",
+    monospace !important;
+  font-weight: 500 !important;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ft-bar-item,
+.ft-bar-item-content {
+  font-variant-numeric: tabular-nums;
+}
+
 .ft-bar {
   overflow: visible !important;
   color: rgb(255 255 255 / 0.94) !important;
@@ -17,6 +52,8 @@
 }
 
 .ft-bar-item {
+  // Aurora's base module geometry applies independently of the optional
+  // centered-toolbar layout.
   box-sizing: border-box !important;
   height: 26px !important;
   min-height: 26px !important;
@@ -29,9 +66,9 @@
   border: 1px solid rgb(255 255 255 / 0.16) !important;
   border-radius: 12px !important;
   backdrop-filter: blur(calc(var(--aurora-glass-blur, 10) * 1px)) saturate(1.5)
-    brightness(1.04) !important;
+    brightness(var(--aurora-glass-brightness, 1.04)) !important;
   -webkit-backdrop-filter: blur(calc(var(--aurora-glass-blur, 10) * 1px)) saturate(1.5)
-    brightness(1.04) !important;
+    brightness(var(--aurora-glass-brightness, 1.04)) !important;
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.12),
     0 2px 8px rgb(0 0 0 / 0.12) !important;
@@ -67,13 +104,12 @@
   &.ft-bar-item-active {
     color: rgb(255 255 255 / 0.98) !important;
     font-weight: 600 !important;
-    background: var(--slu-dock-glass-item-selected) !important;
-    border: 1px solid rgb(255 255 255 / 0.26) !important;
-    outline: 1px solid oklch(from var(--system-accent-color) l c h / 0.5) !important;
-    outline-offset: 1px !important;
+    background: var(--slu-dock-glass-item) !important;
+    border: 1px solid rgb(255 255 255 / 0.2) !important;
+    outline: none !important;
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.16),
-      0 4px 16px rgb(0 0 0 / 0.18) !important;
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      0 3px 12px rgb(0 0 0 / 0.15) !important;
     transform: scale(1.01) !important;
   }
 
@@ -85,5 +121,87 @@
   &[data-dragging="true"] {
     opacity: 0.94;
     transform: scale(1.015) !important;
+  }
+}
+
+.ft-bar-item:is(
+    [id="@seelen/tb-user-menu"],
+    [id="@default/user-folder"]
+  )
+  .ft-bar-item-content
+  img {
+  border-radius: 50% !important;
+  clip-path: circle(50%);
+  object-fit: cover !important;
+}
+
+.ft-bar-item:is(
+    [id="@default/workspaces-dotted"],
+    [id="@default/workspaces-named"],
+    [id="@default/workspaces-numbered"]
+  ) {
+  color: rgb(255 255 255 / 0.86) !important;
+  background: var(--slu-dock-glass-item) !important;
+  border-color: rgb(255 255 255 / 0.18) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.13),
+    0 2px 8px rgb(0 0 0 / 0.1) !important;
+
+  button[data-skin="transparent"] {
+    color: rgb(255 255 255 / 0.82) !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+    text-shadow: 0 1px 5px rgb(0 0 0 / 0.16);
+
+    &[style*="system-accent-color"] {
+      color: var(--aurora-accent-color) !important;
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.ft-bar-item[id="@default/workspaces-dotted"]
+  button[data-skin="transparent"][style*="system-accent-color"] {
+  color: var(--aurora-accent-color-strong) !important;
+  background: var(--aurora-accent-color-strong) !important;
+  box-shadow: 0 0 7px var(--aurora-accent-glass-glow) !important;
+}
+
+.ft-bar-item-badge {
+  min-width: 13px !important;
+  height: 13px !important;
+  box-sizing: border-box;
+  color: rgb(255 255 255 / 0.96) !important;
+  background: var(--aurora-accent-glass-hover) !important;
+  border: 1px solid var(--aurora-accent-glass-border);
+  backdrop-filter: blur(5px) saturate(1.35);
+  -webkit-backdrop-filter: blur(5px) saturate(1.35);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.24),
+    0 1px 5px rgb(0 0 0 / 0.2) !important;
+}
+
+// Onyx-inspired container placement only. Item size, group spacing and hover
+// behavior intentionally remain Aurora's defaults.
+@container aurora-toolbar-layout style(--aurora-onyx-toolbar-layout: 1) {
+  #root {
+    left: 50%;
+    width: 75vw !important;
+  }
+
+  #root:has(.ft-bar.top),
+  #root:has(.ft-bar.bottom) {
+    transform: translate3d(-50%, 0, 0) !important;
+  }
+
+  #root:not(:hover):has(.ft-bar-hidden.top) {
+    transform: translate3d(-50%, calc(var(--config-height) * -1), 0) !important;
+  }
+
+  #root:not(:hover):has(.ft-bar-hidden.bottom) {
+    transform: translate3d(-50%, var(--config-height), 0) !important;
   }
 }

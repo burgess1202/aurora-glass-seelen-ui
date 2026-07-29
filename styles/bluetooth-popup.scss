@@ -1,8 +1,44 @@
-.bluetooth-radio-header {
+.bluetooth-radio-header,
+.bluetooth-radio-control {
   background: var(--slu-dock-glass-item) !important;
   border: 1px solid rgb(255 255 255 / 0.16) !important;
   border-radius: 12px !important;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12) !important;
+  backdrop-filter: blur(8px) saturate(1.35) brightness(1.04);
+  -webkit-backdrop-filter: blur(8px) saturate(1.35) brightness(1.04);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 3px 12px rgb(0 0 0 / 0.14) !important;
+
+}
+
+.bluetooth-radio-switch input[type="checkbox"][data-skin="switch"] {
+  background: var(--slu-dock-glass-item) !important;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  box-shadow: inset 0 1px 5px rgb(0 0 0 / 0.18);
+
+  &::before {
+    background: linear-gradient(145deg, rgb(255 255 255 / 0.98), rgb(220 228 242 / 0.86));
+    border: 1px solid rgb(255 255 255 / 0.62);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.8),
+      0 2px 5px rgb(0 0 0 / 0.24);
+  }
+
+  &:checked {
+    background: var(--slu-dock-glass-item) !important;
+    border-color: rgb(255 255 255 / 0.2);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      inset 0 0 8px rgb(255 255 255 / 0.035);
+
+    &::before {
+      background: var(--aurora-accent-color-strong);
+      border-color: oklch(from var(--aurora-accent-color) l c h / 0.72);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.48),
+        0 0 8px var(--aurora-accent-glass-glow);
+    }
+  }
 }
 
 .bluetooth-section:not(:last-child) {
@@ -24,10 +60,13 @@
   }
 
   &.bt-device-selected {
-    background: var(--slu-dock-glass-item-selected) !important;
-    border-color: rgb(255 255 255 / 0.26) !important;
+    color: rgb(255 255 255 / 0.98) !important;
+    background: var(--slu-dock-glass-item) !important;
+    border-color: rgb(255 255 255 / 0.22) !important;
+    backdrop-filter: blur(6px) saturate(1.35);
+    -webkit-backdrop-filter: blur(6px) saturate(1.35);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.16),
-      0 0 0 1px oklch(from var(--system-accent-color) l c h / 0.45) !important;
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      0 3px 10px rgb(0 0 0 / 0.12) !important;
   }
 }

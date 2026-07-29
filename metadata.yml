@@ -82,6 +82,23 @@ settings:
           min: 4
           max: 30
           step: 1
+  - group:
+      header:
+        en: Toolbar layout
+        zh-TW: 工具欄排版
+      items:
+        - syntax: <number>
+          name: --aurora-onyx-toolbar-layout
+          label:
+            en: Centered 75% toolbar
+            zh-TW: Onyx 風格 75% 置中工具欄
+          description:
+            en: "0 = off, 1 = on. Only changes the toolbar width and centers it; item size, spacing and hover behavior stay unchanged."
+            zh-TW: "0 = 關閉，1 = 開啟。只調整工具欄寬度並置中；模組大小、間距與滑鼠停留效果完全不變。"
+          initialValue: 0
+          options:
+            - 0
+            - 1
 
 styles:
   "@seelen/fancy-toolbar": !include styles/fancy-toolbar.scss
@@ -95,5 +112,12 @@ styles:
   "@seelen/bluetooth-popup": !include styles/bluetooth-popup.scss
   "@seelen/media-popup": !include styles/media-popup.scss
   "@seelen/power-menu": !include styles/power-menu.scss
+  "@seelen/context-menu": !include styles/context-menu.scss
+  "@seelen/flyouts": !include styles/flyouts.scss
+  "@seelen/keyboard-selector": !include styles/keyboard-selector.scss
+  "@seelen/quick-settings": !include styles/quick-settings.scss
+  "@seelen/tooltip": !include styles/tooltip.scss
+  "@seelen/workspaces-viewer": !include styles/workspaces-viewer.scss
+  "@seelen/task-switcher": !include styles/task-switcher.scss
 
 sharedStyles: !include shared/index.scss
