@@ -1,0 +1,78 @@
+body {
+  background: transparent !important;
+}
+
+.keyboard-selector {
+  width: 300px;
+  gap: 10px !important;
+  padding: 12px !important;
+
+  .keyboard-selector-header {
+    padding: 1px 4px 5px;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+  }
+
+  .keyboard-selector-body {
+    gap: 5px !important;
+
+    .layout {
+      min-width: 0;
+      padding: 8px 10px !important;
+      color: inherit !important;
+      background: transparent !important;
+      border: 1px solid transparent !important;
+      border-radius: 12px !important;
+      box-shadow: none !important;
+      transition:
+        background 140ms ease,
+        border-color 140ms ease,
+        box-shadow 140ms ease,
+        transform 140ms ease !important;
+
+      &:hover,
+      &:focus-visible {
+        outline: none;
+        background: var(--slu-dock-glass-item-hover) !important;
+        border-color: rgb(255 255 255 / 0.22) !important;
+        box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14) !important;
+      }
+
+      &:active {
+        transform: scale(0.985);
+      }
+
+      &.layout-active {
+        background: var(--slu-dock-glass-item-selected) !important;
+        border-color: rgb(255 255 255 / 0.28) !important;
+        box-shadow:
+          inset 0 1px 0 rgb(255 255 255 / 0.18),
+          0 0 0 1px oklch(from var(--aurora-accent-color) l c h / 0.46) !important;
+      }
+
+      .layout-icon {
+        opacity: 0.82;
+      }
+
+      .layout-info {
+        min-width: 0;
+      }
+
+      .layout-keyboard {
+        max-width: 100%;
+        color: rgb(255 255 255 / 0.62) !important;
+      }
+    }
+  }
+
+  .keyboard-selector-footer {
+    padding-top: 8px;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+
+    button {
+      width: 100%;
+      color: rgb(255 255 255 / 0.76) !important;
+      border-radius: 10px !important;
+    }
+  }
+}

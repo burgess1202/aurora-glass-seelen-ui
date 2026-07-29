@@ -6,9 +6,9 @@
   border: 1.5px solid rgb(255 255 255 / 0.24);
   border-radius: 20px !important;
   backdrop-filter: blur(calc(var(--aurora-glass-blur, 10) * 1px)) saturate(1.5)
-    brightness(1.04);
+    brightness(var(--aurora-glass-brightness, 1.04));
   -webkit-backdrop-filter: blur(calc(var(--aurora-glass-blur, 10) * 1px)) saturate(1.5)
-    brightness(1.04);
+    brightness(var(--aurora-glass-brightness, 1.04));
   box-shadow:
     inset 0 1.5px 0.5px rgb(255 255 255 / 0.16),
     0 5px 18px rgb(0 0 0 / 0.18) !important;
@@ -19,24 +19,72 @@
   }
 }
 
-.weg-items {
-  align-items: center;
+.taskbar {
+  --aurora-wave-range: calc(
+    var(--config-item-size) * (var(--aurora-wave-scale, 1.35) - 1)
+  );
+
+  &.horizontal {
+    height: calc(var(--config-item-size) + var(--config-padding) * 2) !important;
+  }
+
+  &.vertical {
+    width: calc(var(--config-item-size) + var(--config-padding) * 2) !important;
+  }
+}
+
+.taskbar.bottom :is(.weg-items, .weg-items-left, .weg-items-center, .weg-items-right) {
+  align-items: flex-end;
+}
+
+.taskbar.top :is(.weg-items, .weg-items-left, .weg-items-center, .weg-items-right),
+.taskbar.left :is(.weg-items, .weg-items-left, .weg-items-center, .weg-items-right) {
+  align-items: flex-start;
+}
+
+.taskbar.right :is(.weg-items, .weg-items-left, .weg-items-center, .weg-items-right) {
+  align-items: flex-end;
 }
 
 .weg-item-drag-container {
+  --aurora-wave-factor: 0;
   position: relative;
   z-index: 1;
-  transition:
-    transform calc(var(--aurora-wave-duration, 100) * 1ms) cubic-bezier(0.25, 1, 0.5, 1),
-    filter calc(var(--aurora-wave-duration, 100) * 1ms) ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+  }
 }
 
-.horizontal .weg-item-drag-container {
-  transform-origin: 50% 100%;
+.taskbar.horizontal .weg-item-drag-container::before {
+  left: 50%;
+  width: calc(100% + var(--config-space-between-items));
+  height: calc(100% + var(--config-padding) + var(--config-margin));
+  transform: translateX(-50%);
 }
 
-.vertical .weg-item-drag-container {
-  transform-origin: 0 50%;
+.taskbar.vertical .weg-item-drag-container::before {
+  top: 50%;
+  width: calc(100% + var(--config-padding) + var(--config-margin));
+  height: calc(100% + var(--config-space-between-items));
+  transform: translateY(-50%);
+}
+
+.taskbar.bottom .weg-item-drag-container::before {
+  top: 0;
+}
+
+.taskbar.top .weg-item-drag-container::before {
+  bottom: 0;
+}
+
+.taskbar.left .weg-item-drag-container::before {
+  right: 0;
+}
+
+.taskbar.right .weg-item-drag-container::before {
+  left: 0;
 }
 
 .weg-item {
@@ -49,6 +97,8 @@
     inset 0 1px 0 rgb(255 255 255 / 0.14),
     0 3px 10px rgb(0 0 0 / 0.16) !important;
   transition:
+    width calc(var(--aurora-wave-duration, 100) * 1ms) cubic-bezier(0.25, 1, 0.5, 1),
+    height calc(var(--aurora-wave-duration, 100) * 1ms) cubic-bezier(0.25, 1, 0.5, 1),
     background 100ms ease,
     border-color 100ms ease,
     box-shadow 100ms ease,
@@ -62,54 +112,206 @@
       0 5px 14px rgb(0 0 0 / 0.2) !important;
   }
 
-  &:has(.weg-item-open-sign-focused),
-  &:focus-within {
+  &:has(:focus-visible) {
     background: var(--slu-dock-glass-item-selected) !important;
     border-color: rgb(255 255 255 / 0.3);
     filter: brightness(1.07);
   }
+
+  &:active {
+    background: var(--slu-dock-glass-item-selected) !important;
+    border-color: rgb(255 255 255 / 0.34);
+    filter: brightness(1.07);
+  }
 }
 
-.horizontal .weg-item-drag-container:hover {
+/* Aurora Start
+ *
+ * A self-contained four-pane glass mark. The mask keeps the icon crisp at any
+ * dock scale and prevents older standalone start-icon themes from leaking
+ * through when Aurora is enabled.
+ */
+.weg-item-start .weg-item-start-icon {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 1;
+  margin: 0 !important;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 0.98) 0 4%,
+      rgb(190 240 255 / 0.82) 7%,
+      transparent 20%
+    ),
+    conic-gradient(
+      from 210deg at 50% 50%,
+      #83edff 0deg,
+      #559dff 82deg,
+      #7777ff 168deg,
+      #c47fff 258deg,
+      #eefcff 360deg
+    ) !important;
+  -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICA8cGF0aCBkPSJNMjIgMTUuNSA1MyAxMi44YzUtLjQgOC4yIDIuNSA4LjIgNy4zdjMyLjJjMCA1LjUtMy40IDguOS04LjggOC45SDIwLjZjLTQuOCAwLTcuNy0zLTcuMy03LjlsMi40LTMwLjFjLjMtNC4yIDIuNS03LjMgNi4zLTcuN1oiLz4KICA8cGF0aCBkPSJtNzUgMTIuOCAzMSAyLjdjMy44LjQgNiAzLjUgNi4zIDcuN2wyLjQgMzAuMWMuNCA0LjktMi41IDcuOS03LjMgNy45SDc1LjZjLTUuNCAwLTguOC0zLjQtOC44LTguOVYyMC4xYzAtNC44IDMuMi03LjcgOC4yLTcuM1oiLz4KICA8cGF0aCBkPSJNMjAuNiA2Ni44aDMxLjhjNS40IDAgOC44IDMuNCA4LjggOC45djMyLjJjMCA0LjgtMy4yIDcuNy04LjIgNy4zbC0zMS0yLjdjLTMuOC0uNC02LTMuNS02LjMtNy43bC0yLjQtMzAuMWMtLjQtNC45IDIuNS03LjkgNy4zLTcuOVoiLz4KICA8cGF0aCBkPSJNNzUuNiA2Ni44aDMxLjhjNC44IDAgNy43IDMgNy4zIDcuOWwtMi40IDMwLjFjLS4zIDQuMi0yLjUgNy4zLTYuMyA3LjdsLTMxIDIuN2MtNSAuNC04LjItMi41LTguMi03LjNWNzUuN2MwLTUuNSAzLjQtOC45IDguOC04LjlaIi8+Cjwvc3ZnPgo=");
+  mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICA8cGF0aCBkPSJNMjIgMTUuNSA1MyAxMi44YzUtLjQgOC4yIDIuNSA4LjIgNy4zdjMyLjJjMCA1LjUtMy40IDguOS04LjggOC45SDIwLjZjLTQuOCAwLTcuNy0zLTcuMy03LjlsMi40LTMwLjFjLjMtNC4yIDIuNS03LjMgNi4zLTcuN1oiLz4KICA8cGF0aCBkPSJtNzUgMTIuOCAzMSAyLjdjMy44LjQgNiAzLjUgNi4zIDcuN2wyLjQgMzAuMWMuNCA0LjktMi41IDcuOS03LjMgNy45SDc1LjZjLTUuNCAwLTguOC0zLjQtOC44LTguOVYyMC4xYzAtNC44IDMuMi03LjcgOC4yLTcuM1oiLz4KICA8cGF0aCBkPSJNMjAuNiA2Ni44aDMxLjhjNS40IDAgOC44IDMuNCA4LjggOC45djMyLjJjMCA0LjgtMy4yIDcuNy04LjIgNy4zbC0zMS0yLjdjLTMuOC0uNC02LTMuNS02LjMtNy43bC0yLjQtMzAuMWMtLjQtNC45IDIuNS03LjkgNy4zLTcuOVoiLz4KICA8cGF0aCBkPSJNNzUuNiA2Ni44aDMxLjhjNC44IDAgNy43IDMgNy4zIDcuOWwtMi40IDMwLjFjLS4zIDQuMi0yLjUgNy4zLTYuMyA3LjdsLTMxIDIuN2MtNSAuNC04LjItMi41LTguMi03LjNWNzUuN2MwLTUuNSAzLjQtOC45IDguOC04LjlaIi8+Cjwvc3ZnPgo=");
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 88%;
+  mask-size: 88%;
+  filter:
+    drop-shadow(0 0 0.8px rgb(255 255 255 / 0.98))
+    drop-shadow(0 0 3px rgb(88 177 255 / 0.58)) !important;
+  transition: filter 120ms ease !important;
+
+  > :is(img, .slu-icon-mask) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+.weg-item-start:hover .weg-item-start-icon {
+  filter:
+    brightness(1.13)
+    saturate(1.08)
+    drop-shadow(0 0 1px rgb(255 255 255 / 1))
+    drop-shadow(0 0 4px rgb(120 196 255 / 0.72)) !important;
+}
+
+.weg-item-start:active .weg-item-start-icon {
+  filter:
+    brightness(1.2)
+    saturate(0.96)
+    drop-shadow(0 0 1.2px rgb(255 255 255 / 1))
+    drop-shadow(0 0 5px rgb(155 157 255 / 0.8)) !important;
+}
+
+.weg-item-drag-container > .weg-item:not(.media-session-container),
+.weg-item-drag-container > .weg-item-overlay > .weg-item:not(.media-session-container) {
+  --aurora-wave-item-size: calc(
+    var(--config-item-size) + var(--aurora-wave-range) * var(--aurora-wave-factor)
+  );
+  box-sizing: border-box;
+  width: var(--aurora-wave-item-size);
+  height: var(--aurora-wave-item-size);
+}
+
+.weg-item-drag-container:hover {
+  --aurora-wave-factor: 1;
   z-index: 5;
-  transform: translateY(-7px) scale(var(--aurora-wave-scale, 1.35));
 }
 
-.horizontal .weg-item-drag-container:has(+ .weg-item-drag-container:hover),
-.horizontal .weg-item-drag-container:hover + .weg-item-drag-container {
+.weg-item-drag-container:has(+ .weg-item-drag-container:hover),
+.weg-item-drag-container:hover + .weg-item-drag-container {
+  --aurora-wave-factor: 0.7;
   z-index: 4;
-  transform: translateY(-4px) scale(calc(1 + (var(--aurora-wave-scale, 1.35) - 1) * 0.56));
 }
 
-.horizontal
-  .weg-item-drag-container:has(+ .weg-item-drag-container + .weg-item-drag-container:hover),
-.horizontal
-  .weg-item-drag-container:hover
+.weg-item-drag-container:has(+ .weg-item-drag-container + .weg-item-drag-container:hover),
+.weg-item-drag-container:hover
   + .weg-item-drag-container
   + .weg-item-drag-container {
+  --aurora-wave-factor: 0.3;
   z-index: 3;
-  transform: translateY(-2px) scale(calc(1 + (var(--aurora-wave-scale, 1.35) - 1) * 0.25));
 }
 
-.vertical .weg-item-drag-container:hover {
-  z-index: 5;
-  transform: translateX(7px) scale(var(--aurora-wave-scale, 1.35));
-}
-
-.vertical .weg-item-drag-container:has(+ .weg-item-drag-container:hover),
-.vertical .weg-item-drag-container:hover + .weg-item-drag-container {
+/* A separator occupies a DOM slot. Bridge over it so the visual wave keeps
+ * treating the next real icon as the first/second neighbour. */
+.weg-item-drag-container:has(
+    + .weg-item-drag-container:has(.weg-separator)
+    + .weg-item-drag-container:hover
+  ),
+.weg-item-drag-container:hover
+  + .weg-item-drag-container:has(.weg-separator)
+  + .weg-item-drag-container {
+  --aurora-wave-factor: 0.6;
   z-index: 4;
-  transform: translateX(4px) scale(calc(1 + (var(--aurora-wave-scale, 1.35) - 1) * 0.56));
 }
 
-.vertical
-  .weg-item-drag-container:has(+ .weg-item-drag-container + .weg-item-drag-container:hover),
-.vertical
-  .weg-item-drag-container:hover
+.weg-item-drag-container:has(
+    + .weg-item-drag-container
+    + .weg-item-drag-container:has(.weg-separator)
+    + .weg-item-drag-container:hover
+  ),
+.weg-item-drag-container:hover
+  + .weg-item-drag-container:has(.weg-separator)
   + .weg-item-drag-container
   + .weg-item-drag-container {
+  --aurora-wave-factor: 0.3;
   z-index: 3;
-  transform: translateX(2px) scale(calc(1 + (var(--aurora-wave-scale, 1.35) - 1) * 0.25));
+}
+
+/* Compatibility with the pre-2.8 left/centre/right WEG structure. Seelen 2.8
+ * uses one .weg-items row, but these keep the wave continuous on older builds. */
+.taskbar:not([data-size="full-width"])
+  .weg-items-left:has(> .weg-item-drag-container:last-child:hover)
+  + .weg-items-center
+  > .weg-item-drag-container:nth-child(2),
+.taskbar:not([data-size="full-width"])
+  .weg-items-left:has(+ .weg-items-center > .weg-item-drag-container:nth-child(2):hover)
+  > .weg-item-drag-container:last-child,
+.taskbar:not([data-size="full-width"])
+  .weg-items-center:has(> .weg-item-drag-container:nth-last-child(2):hover)
+  + .weg-items-right
+  > .weg-item-drag-container:first-child,
+.taskbar:not([data-size="full-width"])
+  .weg-items-center:has(+ .weg-items-right > .weg-item-drag-container:first-child:hover)
+  > .weg-item-drag-container:nth-last-child(2) {
+  --aurora-wave-factor: 0.7;
+  z-index: 4;
+}
+
+.taskbar:not([data-size="full-width"])
+  .weg-items-left:has(> .weg-item-drag-container:last-child:hover)
+  + .weg-items-center
+  > .weg-item-drag-container:nth-child(3),
+.taskbar:not([data-size="full-width"])
+  .weg-items-left:has(> .weg-item-drag-container:nth-last-child(2):hover)
+  + .weg-items-center
+  > .weg-item-drag-container:nth-child(2),
+.taskbar:not([data-size="full-width"])
+  .weg-items-left:has(+ .weg-items-center > .weg-item-drag-container:nth-child(2):hover)
+  > .weg-item-drag-container:nth-last-child(2),
+.taskbar:not([data-size="full-width"])
+  .weg-items-left:has(+ .weg-items-center > .weg-item-drag-container:nth-child(3):hover)
+  > .weg-item-drag-container:last-child,
+.taskbar:not([data-size="full-width"])
+  .weg-items-center:has(> .weg-item-drag-container:nth-last-child(2):hover)
+  + .weg-items-right
+  > .weg-item-drag-container:nth-child(2),
+.taskbar:not([data-size="full-width"])
+  .weg-items-center:has(> .weg-item-drag-container:nth-last-child(3):hover)
+  + .weg-items-right
+  > .weg-item-drag-container:first-child,
+.taskbar:not([data-size="full-width"])
+  .weg-items-center:has(+ .weg-items-right > .weg-item-drag-container:first-child:hover)
+  > .weg-item-drag-container:nth-last-child(3),
+.taskbar:not([data-size="full-width"])
+  .weg-items-center:has(+ .weg-items-right > .weg-item-drag-container:nth-child(2):hover)
+  > .weg-item-drag-container:nth-last-child(2) {
+  --aurora-wave-factor: 0.3;
+  z-index: 3;
+}
+
+/* Aurora loads after component themes. Preserve the custom media player's
+ * horizontal/vertical resize transition instead of replacing it wholesale. */
+.weg-item.media-session-container-horizontal {
+  transition:
+    width var(--dock-mediapl-width-transition, 400ms ease),
+    background 100ms ease,
+    border-color 100ms ease,
+    box-shadow 100ms ease,
+    filter 100ms ease !important;
+}
+
+.weg-item.media-session-container-vertical {
+  transition:
+    height var(--dock-mediapl-width-transition, 400ms ease),
+    background 100ms ease,
+    border-color 100ms ease,
+    box-shadow 100ms ease,
+    filter 100ms ease !important;
 }
 
 .weg-separator.visible {
@@ -121,7 +323,7 @@
   background-color: rgb(255 255 255 / 0.68) !important;
 
   &.weg-item-open-sign-focused {
-    background-color: var(--system-accent-color) !important;
-    box-shadow: 0 0 6px oklch(from var(--system-accent-color) l c h / 0.65);
+    background-color: var(--aurora-accent-color-strong) !important;
+    box-shadow: 0 0 6px oklch(from var(--aurora-accent-color) l c h / 0.65);
   }
 }

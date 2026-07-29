@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.0 — 2026-07-26
+
+- Added a translucent Aurora Accent Glass material derived from the Windows system accent color.
+- Applied the vitreous accent treatment to active controls and selected items across supported widgets.
+- Updated the Wi-Fi and Bluetooth radio headers and switches for current Seelen UI 2.8 markup.
+- Added glass range tracks, workspace toolbar controls, and notification badges.
+- Rebalanced the primary panel to 36–44% opacity while keeping lighter accent glass and inner highlights.
+
+## 1.2.0 — 2026-07-24
+
+- Expanded Aurora Glass coverage from 11 to 17 shell and popup widgets.
+- Added context-menu, flyout, keyboard-selector, quick-settings, tooltip, and workspace-viewer styles.
+- Kept the existing Aurora tint and transparency model unchanged while extending component coverage.
+
 ## 1.1.0 — 2026-07-24
 
 - Added Aurora Glass styling for the Seelen UI power menu.
