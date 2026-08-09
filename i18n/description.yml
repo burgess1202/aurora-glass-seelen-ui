@@ -5,9 +5,15 @@ en: >-
   Animation for Taskbar; no third-party source code is included. Source code,
   documentation and issue tracker:
   https://github.com/burgess1202/aurora-glass-seelen-ui
+
+  Latest update: Refined the media popup, Dock media controls, icon spacing,
+  and compatibility across Seelen UI 2.8 surfaces.
 zh-TW: >-
   一套可獨立安裝的玻璃桌面主題，包含銀色細邊工具欄、半透明應用程式頁與
   彈出頁面，以及獨立實作的 Dock 波浪。視覺設計參考 Apple Dock、
   Immersive Toolbar、OnyxToolbar 與 Wave Animation for Taskbar，未包含第三方原始碼。
   原始碼、使用說明與問題回報：
   https://github.com/burgess1202/aurora-glass-seelen-ui
+
+  本次更新：調整媒體彈出頁、Dock 媒體控制、圖示間距，並改善
+  Seelen UI 2.8 各介面的相容性。
