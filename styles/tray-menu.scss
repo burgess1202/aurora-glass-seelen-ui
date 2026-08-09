@@ -1,4 +1,18 @@
+.slu-std-popover.system-tray {
+  // Grid Style Tray intentionally renders labels outside their cells. Aurora's
+  // generic popover clipping would cut the second line on the bottom row.
+  overflow: visible !important;
+  clip-path: none !important;
+  // Seelen sizes the native WebView from #root.scrollHeight before the label's
+  // absolute-position animation moves from -6px to +2px. Reserve the complete
+  // two-line end state in normal layout so the OS window itself is tall enough.
+  padding-bottom: max(var(--tray-hl-padding-bottom, 12px), 26px) !important;
+}
+
 .system-tray .system-tray-item {
+  position: relative;
+  z-index: 1;
+  overflow: visible !important;
   border: 1px solid transparent;
   border-radius: 12px;
   transition:
@@ -10,6 +24,9 @@
 
   &:hover,
   &:focus-visible {
+    // Keep a revealed multi-line label above icons in the following grid row
+    // and above Aurora's decorative panel layers.
+    z-index: 6;
     outline: none;
     background: var(--slu-dock-glass-item-hover);
     border-color: rgb(255 255 255 / 0.24);
@@ -22,4 +39,8 @@
   &:active {
     transform: translateY(1px) scale(0.97);
   }
+}
+
+.system-tray .system-tray-item-label {
+  z-index: 7;
 }

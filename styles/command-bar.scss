@@ -1,0 +1,98 @@
+.aurora-command-bar {
+  position: relative !important;
+  isolation: isolate;
+  overflow: hidden !important;
+  color: rgb(255 255 255 / 0.96) !important;
+  background:
+    linear-gradient(145deg, rgb(8 11 17 / 0.78), rgb(17 23 32 / 0.72)),
+    var(--slu-dock-glass-panel) !important;
+  border: 1.5px solid rgb(226 236 245 / 0.36) !important;
+  border-radius: calc(var(--aurora-panel-radius, 22) * 1px) !important;
+  backdrop-filter: blur(calc(var(--aurora-glass-blur, 10) * 1px)) saturate(1.5)
+    brightness(var(--aurora-glass-brightness, 1.04)) !important;
+  -webkit-backdrop-filter: blur(calc(var(--aurora-glass-blur, 10) * 1px)) saturate(1.5)
+    brightness(var(--aurora-glass-brightness, 1.04)) !important;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    inset 0 -1px 0 rgb(188 205 220 / 0.1),
+    0 18px 48px rgb(0 0 0 / 0.34) !important;
+}
+
+.aurora-command-bar::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.11), transparent 15%),
+    linear-gradient(
+      118deg,
+      rgb(255 255 255 / 0.14) 0%,
+      rgb(255 255 255 / 0.035) 28%,
+      transparent 52%
+    );
+  content: "";
+  pointer-events: none;
+}
+
+.aurora-command-bar::after {
+  position: absolute;
+  z-index: -1;
+  top: -45%;
+  bottom: -45%;
+  left: -18%;
+  width: 22%;
+  transform: rotate(14deg);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.08), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.aurora-command-input-row {
+  min-height: 62px !important;
+  background: transparent !important;
+}
+
+.aurora-command-search-icon {
+  color: rgb(255 255 255 / 0.86) !important;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.35));
+}
+
+.aurora-command-input {
+  color: rgb(255 255 255 / 0.98) !important;
+}
+
+.aurora-command-input::placeholder,
+.aurora-command-result-subtitle,
+.aurora-command-result-kind {
+  color: rgb(255 255 255 / 0.64) !important;
+}
+
+.aurora-command-results {
+  border-top-color: rgb(255 255 255 / 0.15) !important;
+}
+
+.aurora-command-result {
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+}
+
+.aurora-command-result:hover,
+.aurora-command-result[aria-selected="true"] {
+  background: var(--aurora-accent-glass-hover) !important;
+  border-color: rgb(255 255 255 / 0.14) !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1);
+}
+
+.aurora-command-result-icon {
+  color: rgb(255 255 255 / 0.92) !important;
+  background: var(--slu-dock-glass-item) !important;
+  border-color: rgb(255 255 255 / 0.17) !important;
+  border-radius: 10px !important;
+}
+
+.aurora-command-escape-hint {
+  color: rgb(255 255 255 / 0.65) !important;
+  background: rgb(255 255 255 / 0.045) !important;
+  border-color: rgb(255 255 255 / 0.14) !important;
+}

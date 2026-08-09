@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <!-- Matches Aurora's dock glass item tile: rgb(20 20 25 / .44)
+         to rgb(45 45 65 / .38). The SVG remains translucent so it blends with
+         the same dock glass beneath it. -->
+    <linearGradient id="itemBase" x1="26" y1="17" x2="103" y2="113" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#141419" stop-opacity=".44"/>
+      <stop offset="1" stop-color="#2D2D41" stop-opacity=".38"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="26" y1="17" x2="101" y2="113" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".86"/>
+      <stop offset=".24" stop-color="#E8F8FF" stop-opacity=".38"/>
+      <stop offset=".64" stop-color="#C5CCDD" stop-opacity=".46"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".72"/>
+    </linearGradient>
+    <linearGradient id="auroraRibbon" x1="11" y1="64" x2="117" y2="94" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".25"/>
+      <stop offset=".28" stop-color="#FFFFFF" stop-opacity=".16"/>
+      <stop offset=".58" stop-color="#FFFFFF" stop-opacity=".10"/>
+      <stop offset=".82" stop-color="#FFFFFF" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".27"/>
+    </linearGradient>
+    <linearGradient id="laserEdge" x1="11" y1="63" x2="117" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".92"/>
+      <stop offset=".27" stop-color="#F1FBFF" stop-opacity=".78"/>
+      <stop offset=".60" stop-color="#D9DEEA" stop-opacity=".64"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".88"/>
+    </linearGradient>
+    <linearGradient id="lowerEdge" x1="12" y1="87" x2="116" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset=".55" stop-color="#D8DFEC" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".68"/>
+    </linearGradient>
+    <radialGradient id="gloss" cx="0" cy="0" r="1" gradientTransform="translate(47 25) rotate(58) scale(62 73)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".23"/>
+      <stop offset=".48" stop-color="#FFFFFF" stop-opacity=".04"/>
+      <stop offset=".7" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="disc"><circle cx="64" cy="64" r="50"/></clipPath>
+    <filter id="laserGlow" x="-10" y="35" width="148" height="82" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+  </defs>
+
+  <circle cx="64" cy="64" r="57" fill="#FFFFFF" fill-opacity=".025" stroke="#FFFFFF" stroke-opacity=".34" stroke-width="1.25"/>
+  <circle cx="64" cy="64" r="54" fill="url(#itemBase)" stroke="url(#rim)" stroke-width="2.2"/>
+
+  <g clip-path="url(#disc)">
+    <path d="M10 76C29 54 49 53 68 72c18 18 35 21 50-5v19c-16 21-38 19-58 1C43 72 27 71 10 91Z" fill="url(#auroraRibbon)"/>
+    <path d="M10 76C29 54 49 53 68 72c18 18 35 21 50-5" stroke="url(#laserEdge)" stroke-width="8" stroke-linecap="round" opacity=".34" filter="url(#laserGlow)"/>
+    <path d="M10 76C29 54 49 53 68 72c18 18 35 21 50-5" stroke="url(#laserEdge)" stroke-width="2.3" stroke-linecap="round"/>
+    <path d="M12 88C29 70 44 72 60 87c20 18 42 20 57 0" stroke="url(#lowerEdge)" stroke-width="1.6" stroke-linecap="round"/>
+    <ellipse cx="49" cy="23" rx="38" ry="25" fill="url(#gloss)" transform="rotate(-8 49 23)"/>
+  </g>
+
+  <circle cx="64" cy="64" r="51.5" stroke="#FFFFFF" stroke-opacity=".14"/>
+</svg>

@@ -1,0 +1,28 @@
+id: "@seelen-community/glass-wave-start"
+metadata:
+  displayName:
+    en: Glass Wave Start Icon
+    zh-TW: 玻璃波浪 Start 圖示
+  description:
+    en: A circular glass Start icon with a system-accent Aurora wave.
+    zh-TW: 帶有系統強調色 Aurora 波浪的圓形玻璃 Start 圖示。
+  tags:
+    - glass
+    - start
+    - system-accent
+    - dock
+  appTargetVersion: [2, 8, 0]
+  extras:
+    homepage: "https://github.com/burgess1202/aurora-glass-seelen-ui"
+    issues: "https://github.com/burgess1202/aurora-glass-seelen-ui/issues"
+
+entries:
+  - type: custom
+    key: "@seelen/weg::start-menu"
+    icon:
+      base: glass-wave-start-shell.svg
+      mask: glass-wave-start-mask.svg
+      isAproximatelySquare: true
+
+remoteEntries: []
+downloaded: false

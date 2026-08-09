@@ -29,7 +29,8 @@ Aurora Glass 是一款非官方 Seelen UI 社群主題，讓 Dock、工具欄、
 - Matching system tray, user, notification, network, calendar, Bluetooth, media, quick-settings, and keyboard panels
 - Aurora-styled context menus, tooltips, volume/brightness flyouts, and workspace viewer
 - Aurora Glass power menu with responsive controls and restrained hover states
-- Configurable blur, panel radius, tint, dock-wave timing, scale, and border cycle
+- Optional Dock wave animation with configurable timing and scale
+- Configurable blur, panel radius, tint, and border cycle
 - No dependency on another community theme
 
 ## Compatibility
