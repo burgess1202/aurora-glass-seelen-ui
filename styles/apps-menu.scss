@@ -228,6 +228,8 @@ body {
 }
 
 .app .app-icon {
+  box-sizing: border-box;
+  padding: 10% !important;
   border-radius: 18% !important;
 
   img {

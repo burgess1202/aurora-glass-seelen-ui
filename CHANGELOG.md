@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added a theme setting that can enable or disable the Dock wave animation without changing Aurora's glass styling.
+- Refined the media popup with compact cover tiles and Dock-style hover controls.
+- Improved Dock media presentation, icon spacing, popup layouts, and Seelen UI 2.8 compatibility.
+
 ## 1.3.0 — 2026-07-26
 
 - Added a translucent Aurora Accent Glass material derived from the Windows system accent color.

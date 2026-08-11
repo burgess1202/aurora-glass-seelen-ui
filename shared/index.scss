@@ -272,8 +272,25 @@
     z-index: 1;
   }
 
-  button[data-skin="transparent"],
-  button[data-skin="default"] {
+  /* Media playback controls and detail-navigation chevrons are intentionally
+   * bare. Exclude them at the shared glass-button source instead of relying
+   * only on later overrides. */
+  button[data-skin="transparent"]:not(
+      :where(
+        .media-popup .media-session-actions > button,
+        .media-popup .media-device [data-behavior="group"] > button,
+        .media-popup .media-device > button:last-child,
+        .media-popup .media-main-view > .media-control-volume > button:last-child
+      )
+    ),
+  button[data-skin="default"]:not(
+      :where(
+        .media-popup .media-session-actions > button,
+        .media-popup .media-device [data-behavior="group"] > button,
+        .media-popup .media-device > button:last-child,
+        .media-popup .media-main-view > .media-control-volume > button:last-child
+      )
+    ) {
     color: inherit !important;
     background: var(--slu-dock-glass-item) !important;
     border: 1px solid rgb(255 255 255 / 0.16) !important;

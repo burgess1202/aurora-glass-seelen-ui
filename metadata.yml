@@ -56,6 +56,30 @@ settings:
         zh-TW: 動態效果
       items:
         - syntax: <number>
+          name: --aurora-dock-wave-enabled
+          label:
+            en: Dock wave animation
+            zh-TW: Dock 波浪動畫
+          description:
+            en: "0 = off, 1 = on. When enabled, the media player becomes a compact album-cover tile with in-cover controls on hover. Disabling it restores the native or third-party player layout."
+            zh-TW: "0 = 關閉，1 = 開啟。開啟後媒體播放器會成為專輯封面方形圖示，懸停時在封面內顯示歌曲與控制鍵；關閉後恢復原生或第三方播放器排版。"
+          initialValue: 1
+          options:
+            - 0
+            - 1
+        - syntax: <number>
+          name: --aurora-hide-native-tooltips
+          label:
+            en: Hide native tooltips
+            zh-TW: 隱藏原生工具提示
+          description:
+            en: "0 = show Seelen tooltips, 1 = hide all native tooltips. Aurora's dock media player keeps its own fixed song-title plate."
+            zh-TW: "0 = 顯示 Seelen 工具提示，1 = 隱藏所有原生工具提示。Aurora Dock 媒體播放器會保留自己的固定歌曲標題欄。"
+          initialValue: 1
+          options:
+            - 0
+            - 1
+        - syntax: <number>
           name: --aurora-wave-duration
           label:
             en: Dock wave transition
@@ -119,5 +143,6 @@ styles:
   "@seelen/tooltip": !include styles/tooltip.scss
   "@seelen/workspaces-viewer": !include styles/workspaces-viewer.scss
   "@seelen/task-switcher": !include styles/task-switcher.scss
+  "@jacky/aurora-command-bar": !include styles/command-bar.scss
 
 sharedStyles: !include shared/index.scss
